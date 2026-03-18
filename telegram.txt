@@ -1,0 +1,2 @@
+token=2 
+chat_id= 1

@@ -1,0 +1,15 @@
+404 not found
+403 forbidden
+502 bad gateway
+503 service unavailable
+default web page
+apache2 default page
+nginx welcome
+test page
+it works!
+coming soon
+under construction
+domain for sale
+parked domain
+suspended account
+account suspended
