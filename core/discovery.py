@@ -1,97 +1,52 @@
 import re
-import random
 import requests
 from typing import List
 
+from core import config
+
 ONION_RE = re.compile(r'[a-z2-7]{56}\.onion', re.IGNORECASE)
-
-SEED_SOURCES = [
-    "https://ahmia.fi/search/?q=onion",
-    "https://ahmia.fi/search/?q=hidden+service",
-    "https://ahmia.fi/search/?q=tor+site",
-    "https://ahmia.fi/search/?q=marketplace",
-    "https://ahmia.fi/search/?q=forum",
-    "https://ahmia.fi/search/?q=email",
-    "https://ahmia.fi/search/?q=wiki",
-    "https://ahmia.fi/search/?q=search+engine",
-    "https://ahmia.fi/search/?q=hosting",
-    "https://ahmia.fi/search/?q=blog",
-    "https://ahmia.fi/search/?q=news",
-    "https://ahmia.fi/search/?q=chat",
-    "https://ahmia.fi/search/?q=crypto",
-    "https://ahmia.fi/search/?q=privacy",
-    "https://ahmia.fi/search/?q=anonymous",
-    "https://ahmia.fi/search/?q=secure",
-    "https://ahmia.fi/search/?q=free",
-    "https://ahmia.fi/search/?q=index",
-    "https://ahmia.fi/search/?q=directory",
-    "https://ahmia.fi/search/?q=list",
-]
-
-ONION_DIRECTORIES = [
-    "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion"
-]
-
-SEARCH_QUERIES = [
-    "site", "index", "link", "directory", "onion", "hidden",
-    "forum", "market", "email", "wiki", "blog", "chat",
-    "hosting", "paste", "crypto", "news", "social", "tool",
-    "privacy", "anonymous", "free", "service", "portal",
-]
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:128.0) Gecko/20100101 Firefox/128.0"}
 
 
-def discover_from_clearnet() -> List[str]:
+def _is_onion(url):
+    return ".onion" in url
+
+
+def _scrape(url, session=None, timeout=30):
     found = set()
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:128.0) Gecko/20100101 Firefox/128.0"}
-
-    for url in SEED_SOURCES:
-        try:
-            r = requests.get(url, timeout=15, headers=headers)
-            matches = ONION_RE.findall(r.text)
-            for m in matches:
-                found.add(f"http://{m.lower()}")
-        except Exception:
-            continue
-
-    for page in range(2, 6):
-        for q in random.sample(SEARCH_QUERIES, min(5, len(SEARCH_QUERIES))):
-            try:
-                url = f"https://ahmia.fi/search/?q={q}&page={page}"
-                r = requests.get(url, timeout=15, headers=headers)
-                matches = ONION_RE.findall(r.text)
-                for m in matches:
-                    found.add(f"http://{m.lower()}")
-            except Exception:
-                continue
-
+    try:
+        if _is_onion(url) and session:
+            r = session.get(url, timeout=timeout)
+        else:
+            r = requests.get(url, timeout=timeout, headers=UA)
+        for m in ONION_RE.findall(r.text):
+            found.add(f"http://{m.lower()}")
+    except Exception:
+        pass
     return list(found)
 
 
-def discover_from_tor(session) -> List[str]:
-    found = set()
-
-    for url in ONION_DIRECTORIES:
-        try:
-            r = session.get(url, timeout=30)
-            matches = ONION_RE.findall(r.text)
-            for m in matches:
-                addr = f"http://{m.lower()}"
-                if addr.rstrip("/") != url.rstrip("/"):
-                    found.add(addr)
-        except Exception:
-            continue
-
-    return list(found)
+def get_sources():
+    return config.get("discovery", "sources", [])
 
 
-def discover_all(session=None) -> List[str]:
+def discover(session=None, timeout=30) -> List[str]:
+    sources = get_sources()
+    if not sources:
+        return []
     all_found = set()
-
-    clearnet = discover_from_clearnet()
-    all_found.update(clearnet)
-
-    if session:
-        tor = discover_from_tor(session)
-        all_found.update(tor)
-
+    for url in sources:
+        from core.log import info
+        info(f"Scraping: {url[:70]}...")
+        links = _scrape(url, session, timeout)
+        all_found.update(links)
+        for src_onion in [u for u in links if _is_onion(u)]:
+            all_found.discard(src_onion)
+            all_found.add(src_onion)
+        if links:
+            info(f"  +{len(links)} addresses")
     return list(all_found)
+
+
+def deep_crawl_page(url, session, timeout=30) -> List[str]:
+    return _scrape(url, session, timeout)

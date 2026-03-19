@@ -12,11 +12,10 @@ CATEGORIES = {
     "tech": ["tech", "code", "developer", "programming", "software", "linux", "git", "open source"],
 }
 
-
 def categorize(title):
     if not title:
         return "uncategorized"
     t = title.lower()
-    scores = {cat: sum(1 for kw in kws if kw in t) for cat, kws in CATEGORIES.items()}
+    scores = {c: sum(1 for k in kw if k in t) for c, kw in CATEGORIES.items()}
     scores = {k: v for k, v in scores.items() if v > 0}
     return max(scores, key=scores.get) if scores else "uncategorized"

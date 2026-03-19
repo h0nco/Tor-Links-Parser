@@ -24,6 +24,9 @@ class Database:
                 language TEXT DEFAULT '',
                 content_hash TEXT DEFAULT '',
                 duplicate_of TEXT DEFAULT '',
+                server_header TEXT DEFAULT '',
+                powered_by TEXT DEFAULT '',
+                content_type TEXT DEFAULT '',
                 first_seen TEXT NOT NULL,
                 last_checked TEXT,
                 last_online TEXT,
@@ -38,7 +41,10 @@ class Database:
 
     def _migrate(self):
         cols = {row[1] for row in self._conn.execute("PRAGMA table_info(sites)").fetchall()}
-        for col, ctype in [("language", "TEXT DEFAULT ''"), ("content_hash", "TEXT DEFAULT ''"), ("duplicate_of", "TEXT DEFAULT ''")]:
+        new_cols = [("language","TEXT DEFAULT ''"),("content_hash","TEXT DEFAULT ''"),
+                    ("duplicate_of","TEXT DEFAULT ''"),("server_header","TEXT DEFAULT ''"),
+                    ("powered_by","TEXT DEFAULT ''"),("content_type","TEXT DEFAULT ''")]
+        for col, ctype in new_cols:
             if col not in cols:
                 self._conn.execute(f"ALTER TABLE sites ADD COLUMN {col} {ctype}")
         self._conn.commit()
@@ -48,46 +54,48 @@ class Database:
         except Exception:
             pass
 
-    def add_site(self, url, title="", status="unknown", category="uncategorized",
-                 response_time_ms=0, language="", content_hash="", duplicate_of=""):
+    def add_site(self, url, **kw):
         now = datetime.utcnow().isoformat()
         with self._lock:
             try:
                 self._conn.execute(
-                    "INSERT INTO sites (url,title,status,category,language,content_hash,duplicate_of,first_seen,last_checked,last_online,response_time_ms,check_count) VALUES (?,?,?,?,?,?,?,?,?,?,?,1)",
-                    (url, title, status, category, language, content_hash, duplicate_of, now, now, now if status == "online" else None, response_time_ms)
+                    "INSERT INTO sites (url,title,status,category,language,content_hash,duplicate_of,server_header,powered_by,content_type,first_seen,last_checked,last_online,response_time_ms,check_count) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)",
+                    (url, kw.get("title",""), kw.get("status","unknown"), kw.get("category","uncategorized"),
+                     kw.get("language",""), kw.get("content_hash",""), kw.get("duplicate_of",""),
+                     kw.get("server_header",""), kw.get("powered_by",""), kw.get("content_type",""),
+                     now, now, now if kw.get("status")=="online" else None, kw.get("response_time_ms",0))
                 )
                 self._conn.commit()
                 return True
             except sqlite3.IntegrityError:
                 return False
 
-    def update_site(self, url, **kwargs):
+    def update_site(self, url, **kw):
         now = datetime.utcnow().isoformat()
         with self._lock:
             if not self._conn.execute("SELECT 1 FROM sites WHERE url = ?", (url,)).fetchone():
                 return
             fields = ["last_checked = ?", "check_count = check_count + 1"]
             values = [now]
-            for key in ("title", "status", "category", "response_time_ms", "language", "content_hash", "duplicate_of"):
-                if key in kwargs and kwargs[key] is not None:
+            for key in ("title","status","category","response_time_ms","language","content_hash","duplicate_of","server_header","powered_by","content_type"):
+                if key in kw and kw[key] is not None:
                     fields.append(f"{key} = ?")
-                    values.append(kwargs[key])
-            if kwargs.get("status") == "online":
+                    values.append(kw[key])
+            if kw.get("status") == "online":
                 fields.append("last_online = ?")
                 values.append(now)
             values.append(url)
             self._conn.execute(f"UPDATE sites SET {', '.join(fields)} WHERE url = ?", values)
             self._conn.commit()
 
-    def find_by_hash(self, content_hash):
-        if not content_hash:
+    def find_by_hash(self, h):
+        if not h:
             return None
         with self._lock:
-            row = self._conn.execute("SELECT url FROM sites WHERE content_hash = ? AND duplicate_of = '' LIMIT 1", (content_hash,)).fetchone()
+            row = self._conn.execute("SELECT url FROM sites WHERE content_hash = ? AND duplicate_of = '' LIMIT 1", (h,)).fetchone()
         return row["url"] if row else None
 
-    def search(self, query="", status="", category="", limit=500):
+    def search(self, query="", status="", limit=500):
         conds, params = [], []
         if query:
             conds.append("(url LIKE ? OR title LIKE ?)")
@@ -95,9 +103,6 @@ class Database:
         if status:
             conds.append("status = ?")
             params.append(status)
-        if category:
-            conds.append("category = ?")
-            params.append(category)
         where = f"WHERE {' AND '.join(conds)}" if conds else ""
         with self._lock:
             rows = self._conn.execute(f"SELECT * FROM sites {where} ORDER BY last_checked DESC LIMIT ?", params + [limit]).fetchall()

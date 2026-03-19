@@ -1,20 +1,15 @@
-import time
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
-from core.database import Database
 from core.checker import check_site
 from core.categorizer import categorize
-from core.telegram import send_monitor_alert, load_config
+from core.telegram import send_monitor_alert, tg_enabled
 
 
 class Monitor:
-    def __init__(self, db, sessions, interval=300, timeout=20, retries=2):
+    def __init__(self, db, sessions, interval=300):
         self.db = db
         self.sessions = sessions
         self.interval = interval
-        self.timeout = timeout
-        self.retries = retries
         self._thread = None
         self._stop = threading.Event()
 
@@ -43,50 +38,37 @@ class Monitor:
         sites = self.db.get_online_sites()
         if not sites:
             return
+        from core.log import info
+        info(f"[monitor] Checking {len(sites)} online sites...")
+        went_off, came_on = [], []
 
-        print(f"\n  [monitor] Checking {len(sites)} online sites...")
-
-        went_offline = []
-        came_online = []
-
-        def _check_one(site):
+        def _check(site):
             url = site["url"]
-            sess = self.sessions[hash(url) % len(self.sessions)]
-            result = check_site(url, sess, self.timeout, self.retries)
-
-            if result.is_online and site["status"] != "online":
-                cat = categorize(result.title)
-                self.db.update_site(url, title=result.title, status="online", category=cat, response_time_ms=result.response_time_ms)
-                return "online", {"url": url, "title": result.title}
-            elif not result.is_online and site["status"] == "online":
-                self.db.update_site(url, status="offline", response_time_ms=result.response_time_ms)
+            s = self.sessions[hash(url) % len(self.sessions)]
+            r = check_site(url, s, 20, 2)
+            if not r.is_online and site["status"] == "online":
+                self.db.update_site(url, status="offline", response_time_ms=r.response_time_ms)
                 return "offline", {"url": url}
-            else:
-                self.db.update_site(url, response_time_ms=result.response_time_ms)
-                return "same", None
+            elif r.is_online and site["status"] != "online":
+                self.db.update_site(url, title=r.title, status="online", category=categorize(r.title), response_time_ms=r.response_time_ms)
+                return "online", {"url": url, "title": r.title}
+            self.db.update_site(url, response_time_ms=r.response_time_ms)
+            return "same", None
 
-        with ThreadPoolExecutor(max_workers=min(len(self.sessions), len(sites))) as executor:
-            futures = {executor.submit(_check_one, s): s for s in sites}
-            for future in as_completed(futures):
+        with ThreadPoolExecutor(max_workers=min(len(self.sessions), len(sites))) as ex:
+            for f in as_completed({ex.submit(_check, s): s for s in sites}):
                 try:
-                    status, data = future.result()
-                    if status == "offline" and data:
-                        went_offline.append(data)
-                        print(f"  [monitor] OFFLINE: {data['url']}")
-                    elif status == "online" and data:
-                        came_online.append(data)
-                        print(f"  [monitor] BACK ONLINE: {data['url']}")
+                    st, d = f.result()
+                    if st == "offline" and d:
+                        went_off.append(d)
+                    elif st == "online" and d:
+                        came_on.append(d)
                 except Exception:
                     pass
 
-        if went_offline or came_online:
-            tg_token, tg_chat = load_config()
-            if tg_token and tg_chat:
-                send_monitor_alert(went_offline, came_online)
-
-        total_off = len(went_offline)
-        total_on = len(came_online)
-        if total_off or total_on:
-            print(f"  [monitor] Changes: {total_off} went offline, {total_on} came online")
+        if (went_off or came_on) and tg_enabled():
+            send_monitor_alert(went_off, came_on)
+        if went_off or came_on:
+            info(f"[monitor] {len(went_off)} offline, {len(came_on)} back online")
         else:
-            print(f"  [monitor] No changes. All {len(sites)} sites still online.")
+            info(f"[monitor] All {len(sites)} still online")

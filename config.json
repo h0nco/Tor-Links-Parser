@@ -1,0 +1,37 @@
+{
+  "tor": {
+    "ports": [9150, 9050],
+    "threads": 10,
+    "timeout": 20,
+    "retries": 2,
+    "retry_delay": 3,
+    "circuit_rotate_every": 50
+  },
+  "rate_limit": {
+    "requests_per_second": 5,
+    "burst": 10
+  },
+  "telegram": {
+    "token": "",
+    "chat_id": ""
+  },
+  "discovery": {
+    "sources": [
+      "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/onions/",
+      "http://torlinksge6enmcyyuxjpjhidqd2qzrj7bqat4ncqjolojz2bijlaid.onion",
+      "http://s4k4ceiapber4o5v5qpdfg3cuykqko3eeyloe5ki6gn3qkxfcdbmwoad.onion",
+      "http://donionsixbjtiohce24abfgsffo2l4tk26qx464wo2x7tuz6gkxqhqad.onion",
+      "http://megalzwink435kangsseahebpbp3teedi4jjt64ne2g6d3oqy3qlweid.onion"
+    ],
+    "crawl_found_links": true,
+    "rescan_interval": 120,
+    "deep_crawl_depth": 3
+  },
+  "monitor": {
+    "interval": 300
+  },
+  "export": {
+    "auto_export": true,
+    "dir": "data"
+  }
+}
