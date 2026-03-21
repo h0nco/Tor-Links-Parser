@@ -1,7 +1,4 @@
-import json
-import threading
-import time
-import requests
+import json, threading, time, requests
 from datetime import datetime
 from core import config
 
@@ -10,113 +7,78 @@ _poll_thread = None
 _poll_stop = threading.Event()
 _last_update_id = 0
 
-
-def _get_tg():
-    t = config.get("telegram", "token", "")
-    c = config.get("telegram", "chat_id", "")
-    return (t, c) if t and c else (None, None)
-
-
-def _send(text, parse_mode="HTML"):
-    token, chat_id = _get_tg()
-    if not token:
-        return False
-    try:
-        requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
-                      data={"chat_id": chat_id, "text": text, "parse_mode": parse_mode}, timeout=10)
-        return True
-    except Exception:
-        return False
-
+def _tg():
+    t = config.get("telegram","token","")
+    c = config.get("telegram","chat_id","")
+    return (t,c) if t and c else (None,None)
 
 def tg_enabled():
-    t, c = _get_tg()
+    t,c = _tg()
     return bool(t and c)
 
+def _send(text):
+    t,c = _tg()
+    if not t: return False
+    try:
+        requests.post(f"https://api.telegram.org/bot{t}/sendMessage", data={"chat_id":c,"text":text,"parse_mode":"HTML"}, timeout=10)
+        return True
+    except: return False
 
-def send_site_found(data):
+def send_site(data):
     now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    msg = {
-        "type": "site_found", "url": data.get("url", ""),
-        "title": data.get("title", "") or "(none)", "category": data.get("category", ""),
-        "language": data.get("language", "") or None,
-        "duplicate_of": data.get("duplicate_of", "") or None,
-        "crawled_links": data.get("crawled_count", 0) or None,
-        "ping_ms": data.get("response_time_ms", 0), "attempts": data.get("attempts", 1),
-        "server": data.get("server_header", "") or None,
-        "checked_at": now, "hash": data.get("content_hash", ""),
-    }
-    msg = {k: v for k, v in msg.items() if v is not None}
-    return _send(f"<b>ghTor</b> | site found\n<pre>{json.dumps(msg, indent=2, ensure_ascii=False)}</pre>")
+    m = {"type":"site_found","url":data.get("url",""),"title":data.get("title","") or "(none)","category":data.get("category",""),
+         "language":data.get("language","") or None,"ping_ms":data.get("response_time_ms",0),"attempts":data.get("attempts",1),
+         "server":data.get("server_header","") or None,"checked_at":now,"hash":data.get("content_hash","")}
+    m = {k:v for k,v in m.items() if v is not None}
+    return _send(f"<b>ghTor</b> | found\n<pre>{json.dumps(m,indent=2,ensure_ascii=False)}</pre>")
 
-
-def send_batch_report(batch):
-    if not batch:
-        return False
+def send_batch(batch):
+    if not batch: return False
     now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    online = [s for s in batch if s.get("status") == "online"]
-    msg = {"type": "batch_report", "total_checked": len(batch), "online": len(online),
-           "offline": len(batch) - len(online), "report_time": now}
-    if online:
-        msg["avg_ping_ms"] = round(sum(s.get("response_time_ms", 0) for s in online) / len(online))
-        msg["sites"] = [{"url": s["url"], "title": s.get("title","") or "(none)", "category": s.get("category",""), "ping_ms": s.get("response_time_ms",0)} for s in online]
-    text = f"<b>ghTor</b> | batch\n<pre>{json.dumps(msg, indent=2, ensure_ascii=False)}</pre>"
-    if len(text) > 4000:
-        text = text[:4000] + "</pre>"
-    return _send(text)
+    on = [s for s in batch if s.get("status")=="online"]
+    m = {"type":"batch","total":len(batch),"online":len(on),"offline":len(batch)-len(on),"time":now}
+    if on:
+        m["avg_ping"] = round(sum(s.get("response_time_ms",0) for s in on)/len(on))
+        m["sites"] = [{"url":s["url"],"title":s.get("title","") or "(none)","cat":s.get("category",""),"ms":s.get("response_time_ms",0)} for s in on]
+    txt = f"<b>ghTor</b> | batch\n<pre>{json.dumps(m,indent=2,ensure_ascii=False)}</pre>"
+    return _send(txt[:4000]+"</pre>" if len(txt)>4000 else txt)
 
+def send_status(stats, running, mon):
+    m = {"type":"status","scanner":"running" if running else "stopped","monitor":"on" if mon else "off","db":stats}
+    return _send(f"<b>ghTor</b> | status\n<pre>{json.dumps(m,indent=2,ensure_ascii=False)}</pre>")
 
-def send_status(stats, running, monitor_on):
-    msg = {"type": "status", "scanner": "running" if running else "stopped", "monitor": "on" if monitor_on else "off", "db": stats}
-    return _send(f"<b>ghTor</b> | status\n<pre>{json.dumps(msg, indent=2, ensure_ascii=False)}</pre>")
+def send_text(t): return _send(t)
 
+def send_monitor_alert(off, on):
+    m = {"type":"monitor","time":datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")}
+    if on: m["back_online"] = [{"url":s["url"],"title":s.get("title","")} for s in on]
+    if off: m["went_offline"] = [s["url"] for s in off]
+    return _send(f"<b>ghTor</b> | monitor\n<pre>{json.dumps(m,indent=2,ensure_ascii=False)}</pre>")
 
-def send_text(text):
-    return _send(text)
-
-
-def send_monitor_alert(went_off, came_on):
-    msg = {"type": "monitor", "time": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")}
-    if came_on:
-        msg["back_online"] = [{"url": s["url"], "title": s.get("title","")} for s in came_on]
-    if went_off:
-        msg["went_offline"] = [s["url"] for s in went_off]
-    return _send(f"<b>ghTor</b> | monitor\n<pre>{json.dumps(msg, indent=2, ensure_ascii=False)}</pre>")
-
-
-def set_command_callback(cb):
-    global _callback
-    _callback = cb
-
+def set_callback(cb):
+    global _callback; _callback = cb
 
 def start_polling():
     global _poll_thread
-    token, chat_id = _get_tg()
-    if not token:
-        return False
+    t,c = _tg()
+    if not t: return False
     _poll_stop.clear()
-    _poll_thread = threading.Thread(target=_poll_loop, args=(token, chat_id), daemon=True)
+    _poll_thread = threading.Thread(target=_loop, args=(t,c), daemon=True)
     _poll_thread.start()
     return True
 
+def stop_polling(): _poll_stop.set()
 
-def stop_polling():
-    _poll_stop.set()
-
-
-def _poll_loop(token, chat_id):
+def _loop(token, cid):
     global _last_update_id
     while not _poll_stop.is_set():
         try:
-            r = requests.get(f"https://api.telegram.org/bot{token}/getUpdates",
-                             params={"offset": _last_update_id + 1, "timeout": 5}, timeout=10)
-            for u in r.json().get("result", []):
+            r = requests.get(f"https://api.telegram.org/bot{token}/getUpdates", params={"offset":_last_update_id+1,"timeout":5}, timeout=10)
+            for u in r.json().get("result",[]):
                 _last_update_id = u["update_id"]
-                msg = u.get("message", {})
-                if str(msg.get("chat", {}).get("id")) == str(chat_id):
-                    text = msg.get("text", "").strip()
-                    if text and _callback:
-                        _callback(text)
-        except Exception:
-            pass
+                msg = u.get("message",{})
+                if str(msg.get("chat",{}).get("id")) == str(cid):
+                    t = msg.get("text","").strip()
+                    if t and _callback: _callback(t)
+        except: pass
         time.sleep(1)

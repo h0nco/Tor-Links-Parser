@@ -1,31 +1,27 @@
-import time
-import threading
-
+import asyncio, time
 
 class RateLimiter:
-    def __init__(self, rate=5, burst=10):
+    def __init__(self, rate=10, burst=20):
         self.rate = rate
         self.burst = burst
-        self.tokens = burst
+        self.tokens = float(burst)
         self.last = time.monotonic()
-        self._lock = threading.Lock()
+        self._lock = asyncio.Lock()
 
-    def acquire(self):
-        with self._lock:
+    async def acquire(self):
+        async with self._lock:
             now = time.monotonic()
-            elapsed = now - self.last
+            self.tokens = min(self.burst, self.tokens + (now - self.last) * self.rate)
             self.last = now
-            self.tokens = min(self.burst, self.tokens + elapsed * self.rate)
             if self.tokens >= 1:
                 self.tokens -= 1
                 return
         while True:
-            time.sleep(1.0 / self.rate)
-            with self._lock:
+            await asyncio.sleep(1.0 / self.rate)
+            async with self._lock:
                 now = time.monotonic()
-                elapsed = now - self.last
+                self.tokens = min(self.burst, self.tokens + (now - self.last) * self.rate)
                 self.last = now
-                self.tokens = min(self.burst, self.tokens + elapsed * self.rate)
                 if self.tokens >= 1:
                     self.tokens -= 1
                     return

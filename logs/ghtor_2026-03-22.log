@@ -1,0 +1,144 @@
+00:34:39 [INFO] ghTor
+00:34:40 [INFO] Подключение к Tor...
+00:34:40 [INFO] Порт: 9150
+00:34:48 [INFO] Tor OK, IP: 93.113.25.96
+00:35:09 [INFO] Создаю 20 сессий...
+00:35:09 [INFO] Готово. 20 потоков.
+00:35:09 [INFO] Telegram: enabled + bot control
+00:35:12 [INFO] No plugins loaded. Add .py files to plugins/
+00:37:07 [INFO] ghTor
+00:37:08 [INFO] Подключение к Tor...
+00:37:08 [INFO] Порт: 9150
+00:37:28 [INFO] Tor OK, IP: 107.189.7.144
+00:37:30 [INFO] Создаю 20 сессий...
+00:37:30 [INFO] Готово. 20 потоков.
+00:37:30 [INFO] Telegram: enabled + bot control
+00:37:32 [INFO] No plugins loaded. Add .py files to plugins/
+00:37:35 [INFO] Мониторинг (300с).
+00:37:35 [INFO] [monitor] Checking 145
+00:37:38 [INFO] Подключение к Tor...
+00:37:38 [INFO] Порт: 9150
+00:37:47 [INFO] Tor OK, IP: 185.220.101.15
+00:37:47 [INFO] Создаю 2 сессий...
+00:37:47 [INFO] Готово. 2 потоков.
+00:37:47 [INFO] Telegram: enabled + bot control
+00:37:51 [INFO] Файл: 18900, в базе: 15, новых: 18885
+00:37:53 [INFO] Проверяю 18885...
+00:38:28 [INFO] [1] ОНЛАЙН 12451мс [marketplace] [es] Home - Tor Market
+00:38:28 [INFO]          http://2222224x2424q7mef5g73ynt2c7ihr7kongwhgd7ee4smqm7kkamtcyd.onion/
+00:38:28 [INFO] [1] +5 найдено
+00:38:31 [INFO] [2] ОНЛАЙН 15138мс [marketplace] [en] Buy Drugs, Weed, Cocaine, LSD, Heroin, Codeine, Xanax, Clone Cards, Hacking, Fraud, Guns, Firearms, Meth, Covid -19 vaccine card, Barbiturates, Benzos, Cannabis, Concentrates, Edibles, Hash, Seeds, Va
+00:38:31 [INFO]          http://2222d2iyeq5ruli2xasyez3scsf44ambxm2cikxt766tacho36kn63ad.onion/
+00:38:31 [INFO] [2] +6 найдено
+00:38:36 [INFO] [3] ОФЛАЙН Timeout 19999мс (x2)
+00:38:36 [INFO] [4] ОФЛАЙН Timeout 20010мс (x2)
+00:38:36 [INFO] [5] ОФЛАЙН Timeout 20013мс (x2)
+00:38:36 [INFO] [6] ОФЛАЙН Timeout 20016мс (x2)
+00:38:36 [INFO] [7] ОФЛАЙН Timeout 20020мс (x2)
+00:38:36 [INFO] [8] ОФЛАЙН Timeout 20024мс (x2)
+00:38:36 [INFO] [9] ОФЛАЙН Timeout 20028мс (x2)
+00:38:36 [INFO] [10] ОФЛАЙН Timeout 20031мс (x2)
+00:38:36 [INFO] [11] ОФЛАЙН Timeout 20034мс (x2)
+00:38:36 [INFO] [12] ОФЛАЙН Timeout 20037мс (x2)
+00:38:36 [INFO] [13] ОФЛАЙН Timeout 20041мс (x2)
+00:38:36 [INFO] [14] ОФЛАЙН Timeout 20044мс (x2)
+00:38:36 [INFO] [15] ОФЛАЙН Timeout 20047мс (x2)
+00:38:36 [INFO] [16] ОФЛАЙН Timeout 20050мс (x2)
+00:38:36 [INFO] [17] ОФЛАЙН Timeout 20054мс (x2)
+00:38:36 [INFO] [18] ОФЛАЙН Timeout 20058мс (x2)
+00:38:36 [INFO] [19] ОФЛАЙН Timeout 20062мс (x2)
+00:38:36 [INFO] [20] ОФЛАЙН Timeout 20065мс (x2)
+00:39:00 [INFO] [21] ОНЛАЙН 8635мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:39:00 [INFO]          http://22rob5wnhh5d4lwrdxn5zpeturcu2jnqgwcuctvmkbeo7ox6uoie2fad.onion/
+00:39:14 [INFO] [22] ОНЛАЙН 13910мс [marketplace] [?] GiftCardXpress - Buy Cheap Gift Cards
+00:39:14 [INFO]          http://246vfcdjexqy2jux2n5g3cojx45tw76trpa45w3wzvpv7x5agjzh27qd.onion/
+00:39:14 [INFO] [22] +2 найдено
+00:39:14 [INFO] [23] ОНЛАЙН 14159мс [marketplace] [?] GiftCardXpress - Buy Cheap Gift Cards
+00:39:14 [INFO]          http://23pplwmfncq3lvczlag25g2sg2nwbctgvkwnmwzjziigbyrzlddiufad.onion/
+00:39:14 [INFO] [23] +2 найдено
+00:39:15 [INFO] [24] ОНЛАЙН 15699мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:39:15 [INFO]          http://23whzaiscj2cu5fgm7jk3arjzj7utzjgphkowb3urid55omckie6cqad.onion/
+00:39:15 [INFO] [25] ОНЛАЙН 15720мс [marketplace] [?] GiftCardXpress - Buy Cheap Gift Cards
+00:39:15 [INFO]          http://236dcssjlctq4zc4q2tgkq5uuvujcim6zsmmheuehyw6g4dy22t2fjad.onion/
+00:39:15 [INFO] [25] +2 найдено
+00:39:16 [INFO] [26] ОФЛАЙН Timeout 20993мс (x2)
+00:39:18 [INFO] [27] ОНЛАЙН 17805мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:39:18 [INFO]          http://24bvizb4kisdp6ravgl2slw56pzc7tgdd4t2vjjygsv5aeqr37l4f7ad.onion/
+00:39:20 [INFO] [28] ОНЛАЙН 20465мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:39:20 [INFO]          http://23asbesih5ethbre7xqnddvrckivamezjq4swsoriiv62jshpufz5mad.onion/
+00:39:21 [INFO] [29] ОФЛАЙН Timeout 21007мс (x2)
+00:39:21 [INFO] [30] ОФЛАЙН Timeout 21020мс (x2)
+00:39:21 [INFO] [31] ОФЛАЙН Timeout 21024мс (x2)
+00:39:21 [INFO] [32] ОФЛАЙН Timeout 21027мс (x2)
+00:39:21 [INFO] [33] ОФЛАЙН Timeout 21032мс (x2)
+00:39:21 [INFO] [34] ОФЛАЙН Timeout 21036мс (x2)
+00:39:21 [INFO] [35] ОФЛАЙН Timeout 21039мс (x2)
+00:39:21 [INFO] [36] ОФЛАЙН Timeout 21044мс (x2)
+00:39:21 [INFO] [37] ОФЛАЙН Timeout 21047мс (x2)
+00:39:21 [INFO] [38] ОФЛАЙН Timeout 21052мс (x2)
+00:39:21 [INFO] [39] ОФЛАЙН Timeout 21055мс (x2)
+00:39:21 [INFO] [40] ОФЛАЙН Timeout 21059мс (x2)
+00:39:32 [INFO] [41] ОНЛАЙН 7825мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:39:32 [INFO]          http://24cdcwevgz4tdx7kznbn26heyfrd424t7t3qrv5cqyayir4k3a37csad.onion/
+00:39:47 [INFO] [42] ОНЛАЙН 10727мс [marketplace] [?] GiftCardXpress - Buy Cheap Gift Cards
+00:39:47 [INFO]          http://24cpmjz3jtjfm3mlxn24dofdderfwr6c64kchiwk43jz47kv7lchmnad.onion/
+00:39:47 [INFO] [42] +2 найдено
+00:39:53 [INFO] [43] ОНЛАЙН 14697мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:39:53 [INFO]          http://24hz357mk5jqkwuvytwmhhe2ao3c3hs2ncmk4givinqaysuvyt2nread.onion/
+00:39:58 [INFO] [44] ОФЛАЙН Timeout 20014мс (x2)
+00:40:00 [INFO] [45] ОФЛАЙН Timeout 19994мс (x2)
+00:40:00 [INFO] [46] ОФЛАЙН Timeout 20983мс (x2)
+00:40:01 [INFO] [47] ОФЛАЙН Timeout 20017мс (x2)
+00:40:03 [INFO] [48] ОНЛАЙН 18448мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:40:03 [INFO]          http://25oai66mcbsvumfwf2wcutwncypownoixt3cnlvxp54mqrvoedd365id.onion/
+00:40:05 [INFO] Экспорт: 195 -> c:\Users\xiko\Desktop\i0n\ghTor\Tor-Links-Parser\data\export_20260322_004005.json
+00:40:15 [INFO] ghTor
+00:40:15 [INFO] Exported 195 -> c:\Users\xiko\Desktop\i0n\ghTor\Tor-Links-Parser\data\export_20260322_004015.json
+00:40:23 [INFO] ghTor
+00:40:24 [INFO] Подключение к Tor...
+00:40:24 [INFO] Порт: 9150
+00:40:35 [INFO] Tor OK, IP: 38.135.24.122
+00:40:39 [INFO] Создаю 20 сессий...
+00:40:39 [INFO] Готово. 20 потоков.
+00:40:39 [INFO] Загружено 3 плагинов: ahmia_onions, torlinks, donion
+00:40:39 [INFO] Telegram: enabled + bot control
+00:40:40 [INFO] Файл: 18900, в базе: 63, новых: 18837
+00:40:42 [INFO] Проверяю 18837...
+00:40:50 [INFO] [1] ОНЛАЙН 7768мс [marketplace] [en] Global Accounts - Buy Aged & Verified Advertising Accounts
+00:40:50 [INFO]          http://25qwvwefhkhc43aodirldcgtiz5icsps4eyl7mmobv2mzzxzns7cmjad.onion/
+00:40:50 [INFO] [2] ОНЛАЙН 7964мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:40:50 [INFO]          http://25soi6udnf6sb3siisgppndch2pixmtxpnnxdra7fgcfthq3oru7jgyd.onion/
+00:40:51 [INFO] [3] ОНЛАЙН 8534мс [marketplace] [?] GiftCardXpress - Buy Cheap Gift Cards
+00:40:51 [INFO]          http://25afbklw5zvohs6jzw7cv3mjlxzgaihaaxk7atnlpfanftuvzqqgonqd.onion/
+00:40:51 [INFO] [3] +2 найдено
+00:40:51 [INFO] [4] ОНЛАЙН 7768мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:40:51 [INFO]          http://262exszwl6sdynqheiazwp6atq2z7xrvi2ixb5fqm3yusip6n35e6tqd.onion/
+00:40:52 [INFO] [5] ОНЛАЙН 9894мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities
+00:40:52 [INFO]          http://25ecrxluoo24fzic6g6ikvotomqqsfw3xzacjf6w2al2bimb26vpb2id.onion/
+00:40:52 [INFO] [5] +1 найдено
+00:40:54 [INFO] [6] ОНЛАЙН 12372мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:40:54 [INFO]          http://255gltfpompcrpoouhl7nliolwq4lvkddis4442nncopavja5qu6niqd.onion/
+00:40:57 [INFO] [7] ОНЛАЙН 14541мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+00:40:57 [INFO]          http://25fkemuc5qk3w2bvi4x4pr3hbfgvvpzgv7pqgwdexcwxdv7tbp532uqd.onion/
+00:41:30 [INFO] ghTor
+00:41:31 [INFO] Сначала подключитесь.
+00:41:37 [INFO] Подключение к Tor...
+00:41:37 [INFO] Порт: 9150
+00:41:50 [INFO] Tor OK, IP: 38.135.24.122
+00:41:55 [INFO] Создаю 20 сессий...
+00:41:55 [INFO] Готово. 20 потоков.
+00:41:55 [INFO] Загружено 3 плагинов: ahmia_onions, torlinks, donion
+00:41:55 [INFO] Telegram: enabled + bot control
+00:41:57 [INFO] Фаза 1: 3 плагинов...
+00:42:28 [INFO] Собрано: 0, Новых: 0
+00:42:28 [INFO] Нечего.
+00:49:03 [INFO] ghTor
+00:49:04 [INFO] Подключение к Tor...
+00:49:04 [INFO] Порт: 9150
+00:49:14 [INFO] Tor OK, IP: 38.135.24.122
+00:49:19 [INFO] Создаю 20 сессий...
+00:49:19 [INFO] Готово. 20 потоков.
+00:49:19 [INFO] Загружено 3 плагинов: ahmia_onions, torlinks, donion
+00:49:19 [INFO] Telegram: enabled + bot control
+00:49:20 [INFO] Фаза 1: 3 плагинов...
+00:49:20 [INFO]   [ahmia_onions] fetching http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4c...

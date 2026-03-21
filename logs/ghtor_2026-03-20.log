@@ -1,0 +1,73 @@
+19:21:32 [INFO] ghTor
+19:21:34 [INFO] Подключение к Tor...
+19:21:34 [INFO] Порт: 9150
+19:21:44 [INFO] Tor OK, IP: 45.138.16.164
+19:22:20 [INFO] Создаю 10 сессий...
+19:22:20 [INFO] Готово. 10 потоков.
+19:22:55 [INFO] Фаза 1: Парсинг 5 источников...
+19:22:55 [INFO] Scraping: http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/...
+19:23:39 [INFO]   +18748 addresses
+19:23:39 [INFO] Scraping: http://torlinksge6enmcyyuxjpjhidqd2qzrj7bqat4ncqjolojz2bijlaid.onion...
+19:23:40 [INFO] Scraping: http://s4k4ceiapber4o5v5qpdfg3cuykqko3eeyloe5ki6gn3qkxfcdbmwoad.onion...
+19:23:40 [INFO] Scraping: http://donionsixbjtiohce24abfgsffo2l4tk26qx464wo2x7tuz6gkxqhqad.onion...
+19:23:40 [INFO] Scraping: http://megalzwink435kangsseahebpbp3teedi4jjt64ne2g6d3oqy3qlweid.onion...
+19:24:01 [INFO]   +384 addresses
+19:24:01 [INFO] Собрано: 18974, Новых: 18867
+19:24:01 [INFO] Фаза 2: Проверка 18867 сайтов + краулинг...
+19:24:01 [INFO] Ctrl+C для остановки
+19:24:35 [INFO] [1] ОНЛАЙН 10199мс [uncategorized] [?] Hire a Hacker - Hackers
+19:24:35 [INFO]          http://hackermofzzbyrgmleei3jlihhd342pd2wcyihb35s7cvsapnpxc4kad.onion
+19:24:35 [INFO] [2] ОНЛАЙН 11244мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:24:35 [INFO]          http://va4pr4knvepkuo6o3abnijojainnfnqh4qijkj26olggcgczt7y3agad.onion
+19:24:39 [INFO] [3] ОНЛАЙН 14619мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities
+19:24:39 [INFO]          http://lnpynqd73xuwjztx34ql636pnetidv5jirgq2v6t6bwiqkltpxs2vlad.onion
+19:24:39 [INFO] [3] +1 найдено
+19:24:50 [INFO] [9] ОНЛАЙН 25487мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:24:50 [INFO]          http://2y553et4maijqdghgf6mrzsdw2sq2rbzntitvtf5avkfmdtrk7e6pfad.onion
+19:24:52 [INFO] [10] ОНЛАЙН 27258мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities
+19:24:52 [INFO]          http://fcxuulhsedtudlu4ypeu5pmjuhg5necrevaisywiisw5grbwez43gwqd.onion
+19:24:52 [INFO] [10] +1 найдено
+19:25:14 [INFO] [11] ОНЛАЙН 15925мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:25:14 [INFO]          http://th7kwsf5prcmbw3isk2lel3ggomx33vjp55xxtdlukdyuzfr3bndmcid.onion
+19:25:24 [INFO] [14] ОНЛАЙН 10976мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:25:24 [INFO]          http://wsuyh7q4gef6anxl5cgm26yzikawfrfqqhz55atwjmubc4izwin3abid.onion
+19:26:01 [INFO] [24] ОНЛАЙН 11150мс [uncategorized] [en] Helicoptarian Constitocracy
+19:26:01 [INFO] [23] ОНЛАЙН 11024мс [news] [en] Maverick Journals
+19:26:01 [INFO]          http://vy3a3yk3yc66ddxc7hc352lepuif3rvpmfvn2p7kqcun2d4ewvptkrad.onion
+19:26:01 [INFO]          http://mavericksik6xq2cznhyoa5jnjci36rpu4bjxwnwtprzbb2yz7vrhoid.onion
+19:26:01 [INFO] [23] +1 найдено
+19:26:17 [INFO] [29] ОНЛАЙН 26830мс [marketplace] [?] Dream Market V2
+19:26:17 [INFO]          http://dreav27yxpeipp3v3gplqgdohfgycalx2ag6gcqnceiajqe2pmzb6cqd.onion
+19:26:17 [INFO] [28] ОНЛАЙН 19964мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities
+19:26:17 [INFO]          http://dz52ji6kdiu5secxy5xsx373r4r4lewjhrb6ljw2rynmor5ruvisrmid.onion
+19:26:17 [INFO] [28] +1 найдено
+19:26:20 [INFO] [30] ОНЛАЙН 22719мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:26:20 [INFO]          http://mi52mp654aeek2e6cxdnqzbyn6lbdx2cay7uyfczspityeoi6vmsd7ad.onion
+19:26:34 [INFO] [31] ОНЛАЙН 9831мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:26:34 [INFO]          http://62ztez5jhq3ts5vwyojxmzxnfiywpi3jw2bd6ovohogrzde4tzqly7qd.onion
+19:26:40 [INFO] [32] ОНЛАЙН 19320мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities
+19:26:40 [INFO]          http://6pwt7i2uxf7pkwijvetaqzim3ke37vyaxd6i6sl4x2eyyrnj4ni6xvyd.onion
+19:26:40 [INFO] [32] +1 найдено
+19:26:45 [INFO] [34] ОНЛАЙН 20708мс [uncategorized] [?] .onion Test Site 184
+19:26:45 [INFO]          http://4t7hogdwm2bw2htwqjymuybvrqobkyefy24pdf6tfvlfdbwwt6ckmkid.onion
+19:26:49 [INFO] [36] ОНЛАЙН 19473мс [uncategorized] [en] Cheap Cards Kingdom
+19:26:49 [INFO]          http://cardu6faeimrnien3uglvgxlbm7a6ykok6tp6u4ccbfochrax42bcoad.onion
+19:27:27 [INFO] [43] ОНЛАЙН 19153мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:27:27 [INFO]          http://z3dmovxxmb4tjfq7hgvkaucqgfms7z75mlxxxd5e6zhyjj7iqaropqid.onion
+19:27:30 [INFO] [44] ОНЛАЙН 22688мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:27:30 [INFO]          http://gmmpjpuf42yxqxbnvmvrbcx6tanjhemaus7mocqkrzn4ivvnht4bspqd.onion
+19:27:40 [INFO] [47] ОНЛАЙН 27598мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:27:40 [INFO]          http://i4k3qdwmwbfjquzl55a2ef7tyk243owgzpcswefcvqpeeneuprygkvid.onion
+19:28:11 [INFO] [54] ОНЛАЙН 11587мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:28:11 [INFO]          http://cabmfsc5gyo3hsgeh3plxm73q2zpve6jktswiaxaqp5xcmghxu7khdid.onion
+19:28:11 [INFO] [53] ОНЛАЙН 17853мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:28:11 [INFO]          http://u6ufpm7ahsv4tpauwr5hvgqhufcou3xnijl6ujpxck2j4apkibfslrad.onion
+19:28:15 [INFO] [56] ОНЛАЙН 24676мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:28:15 [INFO]          http://nk3hv67g35idgswoadjivlrall7pkum25emcq3uvgnjme6zmtylytnid.onion
+19:28:27 [INFO] [58] ОНЛАЙН 20619мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:28:27 [INFO]          http://xe5wy5hh47bbzwjukq6esytdxhubftjmagfjhlksyucsc2wasmfxr3yd.onion
+19:28:30 [INFO] [59] ОНЛАЙН 23039мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities
+19:28:30 [INFO]          http://hncr6h37i5n66jh5ugd7uer3hjozp43vtt6t4ury7ia73ypsn372k5id.onion
+19:28:30 [INFO] [59] +1 найдено
+19:28:41 [INFO] [61] ОНЛАЙН 7224мс [uncategorized] [en] OP Alice: This site has been seized by Bavarian authorities [ДУБ http://mxhq5adbok5p3z4nuqfn6jd]
+19:28:41 [INFO]          http://fd373mvbkg42zjc436qzzlssfjgta3ot5ls4grb6ljvwvyjt7klyb5yd.onion

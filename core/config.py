@@ -1,9 +1,8 @@
 import json
 from pathlib import Path
 
-CONFIG_PATH = Path(__file__).parent.parent / "config.json"
 _cfg = None
-
+CONFIG_PATH = Path(__file__).parent.parent / "config.json"
 
 def load():
     global _cfg
@@ -12,15 +11,8 @@ def load():
             _cfg = json.load(f)
     return _cfg
 
-
 def get(section, key=None, default=None):
     c = load()
     if key is None:
         return c.get(section, default)
     return c.get(section, {}).get(key, default)
-
-
-def reload():
-    global _cfg
-    _cfg = None
-    return load()
