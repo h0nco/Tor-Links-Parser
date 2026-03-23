@@ -1,0 +1,28 @@
+{
+  "tor": {
+    "ports": [9150, 9050],
+    "threads": 20,
+    "timeout": 20,
+    "retries": 2,
+    "retry_delay": 3,
+    "circuit_rotate_every": 50
+  },
+  "rate_limit": {
+    "requests_per_second": 10,
+    "burst": 20
+  },
+  "telegram": {
+    "token": " ",
+    "chat_id": " "
+  },
+  "discovery": {
+    "rescan_interval": 120
+  },
+  "monitor": {
+    "interval": 300
+  },
+  "export": {
+    "auto_export": true,
+    "dir": "data"
+  }
+}
